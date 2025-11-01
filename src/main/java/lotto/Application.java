@@ -11,10 +11,6 @@ public class Application {
 
         LottoController lottoController = new LottoController(inputView, outputView);
 
-        try {
-            lottoController.run();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        lottoController.run();
     }
 }
