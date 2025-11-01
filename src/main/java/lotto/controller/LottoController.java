@@ -18,19 +18,27 @@ public class LottoController {
     }
 
     public void run(){
+        // 로또 구입 금액 입력
         outputView.outputRequestPurchaseAmount();
-        int purchaseAmount = inputView.inputPurchaseAmount();
+        int purchaseCount = inputView.inputPurchaseAmount()/1000;
 
+        //로또 구매
+        for(int i = 0; i < purchaseCount; i++){
+            lottoService.purchaseLotto();
+        }
+
+        // 구매한 로또 출력
+        outputView.outputPurchaseCount(purchaseCount);
+        // 번호 출력
+
+        // 당첨 번호 입력
         outputView.outputRequestWinningNumbers();
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
+        // 보너스 번호 입력
         outputView.outputRequestBonusNumber();
         int bonusAmount = inputView.inputBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusAmount);
-
-        for(int i = 0; i < purchaseAmount/1000; i++){
-            lottoService.purchaseLotto();
-        }
     }
 }
