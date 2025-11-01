@@ -24,7 +24,8 @@ public class InputView {
     public int inputBonusNumber(){
         try{
             int bonusNumber = Integer.parseInt(Console.readLine());
-            // 검증 메서드 추후 구현
+            InputValidator.validateBonusNumberRange(bonusNumber);
+            // 보너스 넘버 중복 검증은 WinningLotto 객체 생성 시점에서 진행
             return bonusNumber;
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");

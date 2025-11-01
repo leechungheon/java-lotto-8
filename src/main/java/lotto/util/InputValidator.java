@@ -20,9 +20,15 @@ public class InputValidator {
         validateLottoDuplication(winningNumbers);
     }
 
+    public static void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber <= 0 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1이상 45이하의 숫자가 되어야 합니다.");
+        }
+    }
+
     private static void validateLottoSize(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 
