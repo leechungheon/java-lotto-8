@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class InputView {
     // 검증로직 분리하여 메서드 길이 줄이기
@@ -22,7 +21,7 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinningNumbersList(){
+    public List<Integer> inputWinningNumbers(){
         String winningNumbers = Console.readLine();
         // 검증 메서드 추후 구현
         try {
