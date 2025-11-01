@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 import lotto.util.InputValidator;
+import lotto.util.LottoParser;
 
 public class InputView {
     public int inputPurchaseAmount(){
@@ -16,17 +17,8 @@ public class InputView {
     }
 
     public List<Integer> inputWinningNumbers(){
-        try {
-            String s = Console.readLine();
-            List<Integer> winningNumbers = Arrays.stream(s.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
-            InputValidator.validateInputWinningNumbers(winningNumbers);
-            return winningNumbers;
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
-        }
+        String winningNumbers = Console.readLine();
+        return LottoParser.parseWinningNumbers(winningNumbers);
     }
 
     public int inputBonusNumber(){
