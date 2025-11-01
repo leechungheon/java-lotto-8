@@ -5,11 +5,13 @@ import java.util.List;
 
 public class LottoParser {
     public static List<Integer> parseWinningNumbers(String input){
-        return Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .map(LottoParser::parseInt)
                 .toList();
+        InputValidator.validateInputWinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 
     private static int parseInt(String s) {
