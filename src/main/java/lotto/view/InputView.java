@@ -1,8 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class InputView {
+    // 검증로직 분리하여 메서드 길이 줄이기
     public int inputPurchaseAmount(){
         try{
             int purchaseAmount = Integer.parseInt(Console.readLine());
@@ -16,6 +19,29 @@ public class InputView {
             return purchaseAmount;
         }catch(NumberFormatException e){
            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+
+    public List<Integer> inputWinningNumbersList(){
+        String winningNumbers = Console.readLine();
+        // 검증 메서드 추후 구현
+        try {
+            return Arrays.stream(winningNumbers.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+
+    public int inputBonusNumber(){
+        try{
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            // 검증 메서드 추후 구현
+            return bonusNumber;
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
 }
