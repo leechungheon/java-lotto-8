@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.dto.LottosResponse;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -26,8 +27,8 @@ public class LottoController {
         lottoService.purchaseLotto(purchaseCount);
 
         // 구매한 로또 출력
-        outputView.outputPurchaseCount(purchaseCount);
-        // 번호 출력
+        LottosResponse lottosResponse = lottoService.getPurchasedLottosDto();
+        outputView.outputPurchasedLottos(lottosResponse);
 
         // 당첨 번호 입력
         outputView.outputRequestWinningNumbers();
