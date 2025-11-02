@@ -40,11 +40,9 @@ public class OutputView {
 
         for (Map.Entry<Rank, Integer> entry : sortedStatistics.entrySet()) {
             Rank rank = entry.getKey();
-
             if (rank == Rank.MISS) {
                 continue;
             }
-
             System.out.println(formatRankOutput(rank, entry.getValue()));
         }
 

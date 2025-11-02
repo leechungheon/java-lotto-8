@@ -1,10 +1,11 @@
 package lotto.util;
 
 
+import static lotto.util.LottoConstants.*;
+
 import java.util.List;
 
 public class InputValidator {
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
     public static void validateInputPurchaseAmount(int purchaseAmount){
         if(purchaseAmount<=0){
             throw new IllegalArgumentException("[ERROR] 0원 이하의 금액은 입력할 수 없습니다.");
@@ -21,20 +22,20 @@ public class InputValidator {
     }
 
     public static void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber <= 0 || bonusNumber > 45) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1이상 45이하의 숫자가 되어야 합니다.");
         }
     }
 
     private static void validateLottoSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 
     private static void validateLottoRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumber <= 0 || winningNumber > 45) {
+            if (winningNumber < MIN_NUMBER || winningNumber > MAX_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1이상 45이하의 숫자가 되어야 합니다.");
             }
         }

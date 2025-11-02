@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.util.LottoConstants.PURCHASE_AMOUNT_UNIT;
+
 import java.util.List;
 import java.util.Map;
 import lotto.dto.LottosResponse;
@@ -41,7 +43,7 @@ public class LottoController {
     }
 
     private void purchaseLottos(int purchaseAmount) {
-        int purchaseCount = purchaseAmount / 1000;
+        int purchaseCount = purchaseAmount / PURCHASE_AMOUNT_UNIT;
 
         lottoService.purchaseLotto(purchaseCount);
 

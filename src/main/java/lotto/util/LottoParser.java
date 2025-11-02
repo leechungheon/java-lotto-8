@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoParser {
+    private static final String DELIMITER = ",";
     public static List<Integer> parseWinningNumbers(String input){
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .map(LottoParser::parseInt)

@@ -42,7 +42,6 @@ public enum Rank {
                     }
                     return rank.matchBonus == matchBonus;
                 })
-                .filter(rank -> rank != MISS)
                 .findFirst()
                 .orElse(MISS);
     }
