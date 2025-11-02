@@ -29,10 +29,6 @@ public enum Rank {
         return matchCount;
     }
 
-    public boolean isMatchBonus() {
-        return matchBonus;
-    }
-
     public static Rank valueOf(int matchCount, boolean matchBonus) {
         if (matchCount < FIFTH.matchCount) {
             return MISS;

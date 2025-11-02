@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.dto.LottosResponse;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -21,7 +23,8 @@ public class LottoController {
     public void run(){
         // 로또 구입 금액 입력
         outputView.outputRequestPurchaseAmount();
-        int purchaseCount = inputView.inputPurchaseAmount()/1000;
+        int purchaseAmount = inputView.inputPurchaseAmount();
+        int purchaseCount = purchaseAmount/1000;
 
         // 로또 구매
         lottoService.purchaseLotto(purchaseCount);
@@ -40,6 +43,10 @@ public class LottoController {
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusAmount);
 
+        // 당첨 통계 출력
+        Map<Rank, Integer> statistics = lottoService.calculateWinningStatistics(winningLotto);
+        double profitRate = lottoService.calculateProfitRate(statistics, purchaseAmount);
 
+        outputView.outputWinningStatistics(statistics, profitRate);
     }
 }

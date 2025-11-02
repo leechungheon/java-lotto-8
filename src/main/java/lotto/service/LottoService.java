@@ -36,33 +36,39 @@ public class LottoService {
         );
     }
 
-    // LottoService 내부의 당첨 통계를 계산하는 메서드 (예시)
 
     public Map<Rank, Integer> calculateWinningStatistics(WinningLotto winningLotto) {
         Map<Rank, Integer> statistics = initializeStatistics();
 
-        // 구매한 모든 로또(Lotto)를 순회합니다.
         for (Lotto lotto : purchasedLottos.getLottos()) {
 
-            // 1. 일치 개수 및 보너스 일치 여부를 계산
             int matchCount = winningLotto.countMatch(lotto);
             boolean matchBonus = winningLotto.containsBonus(lotto);
 
-            // 2. Rank 모델의 valueOf 메서드를 사용하여 등수를 결정
             Rank rank = Rank.valueOf(matchCount, matchBonus);
 
-            // 3. 통계에 누적
             statistics.put(rank, statistics.getOrDefault(rank, 0) + 1);
         }
 
         return statistics;
     }
 
+    public double calculateProfitRate(Map<Rank, Integer> rankingResults, int purchaseAmount) {
+        long totalRevenue = 0;
+
+        for (Map.Entry<Rank, Integer> entry : rankingResults.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+
+            totalRevenue += (long)rank.getWinningMoney() * count;
+        }
+
+        return (double)totalRevenue / purchaseAmount * 100.0;
+    }
+
     private Map<Rank, Integer> initializeStatistics() {
-        // EnumMap은 Enum을 키로 사용할 때 가장 효율적이고 안전한 Map입니다.
         Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
 
-        // 모든 Rank 상수에 대해 카운트를 0으로 초기화
         for (Rank rank : Rank.values()) {
             statistics.put(rank, 0);
         }
