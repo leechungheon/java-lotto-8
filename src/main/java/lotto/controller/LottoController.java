@@ -56,12 +56,21 @@ public class LottoController {
             try {
                 outputView.outputRequestWinningNumbers();
                 List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                return getBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    private WinningLotto getBonusNumber(List<Integer> winningNumbers){
+        while(true){
+            try{
                 outputView.outputRequestBonusNumber();
                 int bonusAmount = inputView.inputBonusNumber();
 
                 return new WinningLotto(winningNumbers, bonusAmount);
-            } catch (IllegalArgumentException e) {
+            }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

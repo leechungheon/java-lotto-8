@@ -1,6 +1,5 @@
 package lotto.util;
 
-
 import static lotto.util.LottoConstants.*;
 
 import java.util.List;
