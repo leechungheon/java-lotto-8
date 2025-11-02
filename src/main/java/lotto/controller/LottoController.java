@@ -23,7 +23,7 @@ public class LottoController {
         outputView.outputRequestPurchaseAmount();
         int purchaseCount = inputView.inputPurchaseAmount()/1000;
 
-        //로또 구매
+        // 로또 구매
         lottoService.purchaseLotto(purchaseCount);
 
         // 구매한 로또 출력
@@ -39,5 +39,7 @@ public class LottoController {
         int bonusAmount = inputView.inputBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusAmount);
+
+
     }
 }
