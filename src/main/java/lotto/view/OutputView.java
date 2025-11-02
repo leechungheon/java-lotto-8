@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     public void outputWinningStatistics(Map<Rank, Integer> statistics, double profitRate) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         Map<Rank, Integer> sortedStatistics = sortRanks(statistics);

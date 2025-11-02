@@ -21,29 +21,51 @@ public class LottoController {
     }
 
     public void run(){
-        // 로또 구입 금액 입력
-        outputView.outputRequestPurchaseAmount();
-        int purchaseAmount = inputView.inputPurchaseAmount();
-        int purchaseCount = purchaseAmount/1000;
+        int purchaseAmount = getPurchaseAmount();
+        purchaseLottos(purchaseAmount);
 
-        // 로또 구매
+        WinningLotto winningLotto = getWinningLotto();
+
+        calculateAndOutputStatistics(winningLotto, purchaseAmount);
+    }
+
+    private int getPurchaseAmount() {
+        while (true) {
+            try {
+                outputView.outputRequestPurchaseAmount();
+                return inputView.inputPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void purchaseLottos(int purchaseAmount) {
+        int purchaseCount = purchaseAmount / 1000;
+
         lottoService.purchaseLotto(purchaseCount);
 
-        // 구매한 로또 출력
         LottosResponse lottosResponse = lottoService.getPurchasedLottosDto();
         outputView.outputPurchasedLottos(lottosResponse);
+    }
 
-        // 당첨 번호 입력
-        outputView.outputRequestWinningNumbers();
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+    private WinningLotto getWinningLotto() {
+        while (true) {
+            try {
+                outputView.outputRequestWinningNumbers();
+                List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
-        // 보너스 번호 입력
-        outputView.outputRequestBonusNumber();
-        int bonusAmount = inputView.inputBonusNumber();
+                outputView.outputRequestBonusNumber();
+                int bonusAmount = inputView.inputBonusNumber();
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusAmount);
+                return new WinningLotto(winningNumbers, bonusAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
-        // 당첨 통계 출력
+    private void calculateAndOutputStatistics(WinningLotto winningLotto, int purchaseAmount) {
         Map<Rank, Integer> statistics = lottoService.calculateWinningStatistics(winningLotto);
         double profitRate = lottoService.calculateProfitRate(statistics, purchaseAmount);
 
