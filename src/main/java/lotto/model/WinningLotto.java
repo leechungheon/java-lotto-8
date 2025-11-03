@@ -14,10 +14,9 @@ public class WinningLotto {
 
     public int countMatch(Lotto purchasedLotto) {
         int matchCount = 0;
-        List<Integer> winningNumbers = this.numbers;
 
         for (Integer purchasedNumber : purchasedLotto.getNumbers()) {
-            if (winningNumbers.contains(purchasedNumber)) {
+            if (this.numbers.contains(purchasedNumber)) {
                 matchCount++;
             }
         }
