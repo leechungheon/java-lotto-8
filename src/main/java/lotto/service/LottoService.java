@@ -16,7 +16,7 @@ import lotto.model.Rank;
 import lotto.model.WinningLotto;
 
 public class LottoService {
-    private Lottos purchasedLottos;
+    public Lottos purchasedLottos;
     public void purchaseLotto(int lottoCount){
         List<Lotto> generatedLottos  = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++){
