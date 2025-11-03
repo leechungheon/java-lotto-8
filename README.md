@@ -1,4 +1,4 @@
-# 프리코스 - 2주차 과제
+# 프리코스 - 3주차 과제
 
 ### **👉입력조건**
 
@@ -13,6 +13,8 @@
 - **당첨 번호**를 입력받는다.
 - 당첨 번호는 쉼표(,)로 구분된다.
 - 당첨 번호는 1이상 45이하의 중복되지 않는 6개의 숫자이다.
+- 공백은 제거된다.
+- 앞, 뒤, 중간 잘못된 구분자 위치는 무시된다.
 
     ```smalltalk
     당첨 번호를 입력해 주세요.
@@ -102,6 +104,44 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 }
+```
+## 📁 프로젝트 디렉토리 구조
+```smalltalk
+main/java/
+└── lotto/
+    ├── controller/
+    │   └── LottoController
+    ├── dto/
+    │   ├── LottoDto
+    │   └── LottosResponse
+    ├── model/
+    │   ├── Lotto
+    │   ├── Lottos
+    │   ├── Rank
+    │   └── WinningLotto
+    ├── service/
+    │   └── LottosService
+    ├── util/
+    │   ├── InputValidator
+    │   ├── LottoConstants
+    │   └── LottoParser
+    ├── view/
+    │   ├── InputView
+    │   └── OutputView
+    └── Application
+test/java/
+└── lotto/
+    ├── model/
+    │   ├── LottoTest
+    │   └── WinningLottoTest
+    ├── service/
+    │   └── LottoServiceTest
+    ├── util/
+    │   ├── InputValidatorTest
+    │   └── LottoParserTest
+    ├── view/
+    │   └── InputViewTest
+    └── ApplicationTest
 ```
 
 ## 🤓기능 목록 분해
